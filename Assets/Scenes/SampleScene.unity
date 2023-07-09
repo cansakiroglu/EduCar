@@ -10648,6 +10648,24 @@ MonoBehaviour:
   perpDirRotated: {x: -0.9485493, y: 0, z: -0.31662965}
   markerStartUVY: 0.7456627
   customPoints: []
+--- !u!1 &1386422076 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 642287924342879162, guid: 79d0ca8b77e301442afdb49f102e8aed, type: 3}
+  m_PrefabInstance: {fileID: 965111316}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1386422080
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1386422076}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3, y: 3, z: 6}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1394320684
 MonoBehaviour:
   m_ObjectHideFlags: 0

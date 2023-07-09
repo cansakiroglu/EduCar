@@ -60,6 +60,12 @@ public class PlayerMovement : MonoBehaviour
 
             Invoke(nameof(ResetJump), jumpCooldown);
         }
+
+        //// Interact with car
+        //if (Input.GetKey(KeyCode.E) /*&& playerInCarZone*/)
+        //{
+
+        //}
     }
 
 
