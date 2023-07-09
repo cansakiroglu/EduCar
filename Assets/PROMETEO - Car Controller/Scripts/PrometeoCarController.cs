@@ -159,11 +159,13 @@ public class PrometeoCarController : MonoBehaviour
 
     private bool playerInZone;
     private PlayerOrCarChooser Chooser;
+    private bool carActive = false;
 
     // Start is called before the first frame update
     void Start()
     {
         playerInZone = false;
+        carActive = false;
 
       //In this part, we set the 'carRigidbody' value with the Rigidbody attached to this
       //gameObject. Also, we define the center of mass of the car with the Vector3 given
@@ -269,9 +271,24 @@ public class PrometeoCarController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Player-car interaction
         if (playerInZone && Input.GetKey(KeyCode.E))
         {
-            Chooser.inCar = true;
+            //  Enter car
+            if (Chooser.inCar == false)
+            {
+                Chooser.inCar = true;
+                carActive = true;
+            }
+        }
+        if (Input.GetKey(KeyCode.Q))
+        {
+            // Exit car
+            if (Chooser.inCar == true)
+            {
+                Chooser.inCar = false;
+                carActive = false;
+            }
         }
 
 
@@ -334,49 +351,52 @@ public class PrometeoCarController : MonoBehaviour
           ResetSteeringAngle();
         }
 
-      }else{
+      }else if(carActive){
 
         if(Input.GetKey(KeyCode.W)){
-          CancelInvoke("DecelerateCar");
-          deceleratingCar = false;
-          GoForward();
+            CancelInvoke("DecelerateCar");
+            deceleratingCar = false;
+            GoForward();
         }
         if(Input.GetKey(KeyCode.S)){
-          CancelInvoke("DecelerateCar");
-          deceleratingCar = false;
-          GoReverse();
+            CancelInvoke("DecelerateCar");
+            deceleratingCar = false;
+            GoReverse();
         }
 
         if(Input.GetKey(KeyCode.A)){
-          TurnLeft();
+            TurnLeft();
         }
         if(Input.GetKey(KeyCode.D)){
-          TurnRight();
+            TurnRight();
         }
         if(Input.GetKey(KeyCode.Space)){
-          CancelInvoke("DecelerateCar");
-          deceleratingCar = false;
-          Handbrake();
+            CancelInvoke("DecelerateCar");
+            deceleratingCar = false;
+            Handbrake();
         }
         if(Input.GetKeyUp(KeyCode.Space)){
-          RecoverTraction();
+            RecoverTraction();
         }
         if((!Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.W))){
-          ThrottleOff();
+            ThrottleOff();
         }
         if((!Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.W)) && !Input.GetKey(KeyCode.Space) && !deceleratingCar){
-          InvokeRepeating("DecelerateCar", 0f, 0.1f);
-          deceleratingCar = true;
+            InvokeRepeating("DecelerateCar", 0f, 0.1f);
+            deceleratingCar = true;
         }
         if(!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D) && steeringAxis != 0f){
-          ResetSteeringAngle();
+            ResetSteeringAngle();
         }
 
       }
 
+        if (carActive)
+        {
+            // We call the method AnimateWheelMeshes() in order to match the wheel collider movements with the 3D meshes of the wheels.
+            AnimateWheelMeshes();
+        }
 
-      // We call the method AnimateWheelMeshes() in order to match the wheel collider movements with the 3D meshes of the wheels.
-      AnimateWheelMeshes();
 
     }
 

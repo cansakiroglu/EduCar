@@ -28,11 +28,16 @@ public class PlayerOrCarChooser : MonoBehaviour
     {
         if (inCar)
         {
-            Debug.Log("inCar oldu");
             Cam.GetComponent<PlayerCam>().enabled = false;
             Cam.GetComponent<CameraFollow>().enabled = true;
 
             Player.GetComponent<PlayerMovement>().enabled = false;
+
+            Player.GetComponent<MeshRenderer>().enabled = false;
+            Player.GetComponent<CapsuleCollider>().enabled = false;
+            Player.GetComponent<Rigidbody>().Sleep();
+
+            Player.transform.position = new Vector3(Car.transform.position.x, Car.transform.position.y, Car.transform.position.z) + new Vector3(0f, 2f, 0f);
         }
         else
         {
@@ -40,6 +45,12 @@ public class PlayerOrCarChooser : MonoBehaviour
             Cam.GetComponent<CameraFollow>().enabled = false;
 
             Player.GetComponent<PlayerMovement>().enabled = true;
+
+            Player.GetComponent<MeshRenderer>().enabled = true;
+            Player.GetComponent<CapsuleCollider>().enabled = true;
+            Player.GetComponent<Rigidbody>().WakeUp();
+
+            
         }
     }
 }
