@@ -16,10 +16,9 @@ using UnityEngine.UI;
 
 public class PrometeoCarController : MonoBehaviour
 {
-
     //CAR SETUP
 
-      [Space(20)]
+    [Space(20)]
       //[Header("CAR SETUP")]
       [Space(10)]
       [Range(20, 190)]
@@ -158,9 +157,14 @@ public class PrometeoCarController : MonoBehaviour
       WheelFrictionCurve RRwheelFriction;
       float RRWextremumSlip;
 
+    private bool playerInZone;
+    private PlayerOrCarChooser Chooser;
+
     // Start is called before the first frame update
     void Start()
     {
+        playerInZone = false;
+
       //In this part, we set the 'carRigidbody' value with the Rigidbody attached to this
       //gameObject. Also, we define the center of mass of the car with the Vector3 given
       //in the inspector.
@@ -265,6 +269,11 @@ public class PrometeoCarController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (playerInZone && Input.GetKey(KeyCode.E))
+        {
+            Chooser.inCar = true;
+        }
+
 
       //CAR DATA
 
@@ -369,6 +378,23 @@ public class PrometeoCarController : MonoBehaviour
       // We call the method AnimateWheelMeshes() in order to match the wheel collider movements with the 3D meshes of the wheels.
       AnimateWheelMeshes();
 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInZone = true;
+            Chooser = other.gameObject.GetComponent<PlayerOrCarChooser>();
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInZone = false;
+        }
     }
 
     // This method converts the car speed data from float to string, and then set the text of the UI carSpeedText with this value.

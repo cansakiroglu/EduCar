@@ -45,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        //CameraRotation();
+        //CameraRotation(); // This causes whole player object (the capsule) to change rotation instead of just the camera
 
         GroundedCheck();
 
@@ -60,12 +60,6 @@ public class PlayerMovement : MonoBehaviour
 
             Invoke(nameof(ResetJump), jumpCooldown);
         }
-
-        //// Interact with car
-        //if (Input.GetKey(KeyCode.E) /*&& playerInCarZone*/)
-        //{
-
-        //}
     }
 
 
