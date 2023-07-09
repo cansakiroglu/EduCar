@@ -36,8 +36,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
 
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
@@ -45,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        CameraRotation();
+        //CameraRotation(); // This causes whole player object (the capsule) to change rotation instead of just the camera
 
         GroundedCheck();
 
@@ -53,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKey(jumpKey) && readyToJump && grounded)
         {
-            Debug.Log("Jump");
+            //Debug.Log("Jump");
             readyToJump = false;
 
             Jump();
@@ -68,22 +68,23 @@ public class PlayerMovement : MonoBehaviour
         Movement();
     }
 
-    private void CameraRotation()
-    {
-        // get mouse input
-        float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
-        float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
+    // This causes whole player object (the capsule) to change rotation instead of just the camera
+    //private void CameraRotation()
+    //{
+    //    // get mouse input
+    //    float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
+    //    float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
 
-        yRotation += mouseX;
+    //    yRotation += mouseX;
 
-        xRotation -= mouseY;
+    //    xRotation -= mouseY;
 
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+    //    xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
-        // rotate cam and orientation
-        transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
-        orientation.rotation = Quaternion.Euler(0, yRotation, 0);
-    }
+    //    // rotate cam and orientation
+    //    transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+    //    orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+    //}
 
     private void GroundedCheck()
     {
