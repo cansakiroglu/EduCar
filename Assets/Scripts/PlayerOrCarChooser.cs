@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerOrCarChooser : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class PlayerOrCarChooser : MonoBehaviour
     public GameObject Cam;
     public GameObject Player;
     public GameObject Car;
+    public Text interactText; 
 
     [HideInInspector]
     public bool inCar;
@@ -53,4 +55,17 @@ public class PlayerOrCarChooser : MonoBehaviour
             
         }
     }
+
+    public void InteractText()
+    {
+        interactText.text = inCar ? "Press [Q] to exit the car." : interactText.text;
+    }
+
+    public void InteractText(bool triggerEnter)
+    {
+        interactText.text = triggerEnter ? "Press [E] to enter to the car." : "";
+        Debug.Log(interactText.text);
+    }
+
+
 }
