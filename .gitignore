@@ -23,6 +23,9 @@ Assets/Firebase/Plugins/x86_64/
 .vs/
 .vsconfig
 
+# Visual Studio Code cahce directory
+.vscode/
+
 # Gradle cache directory
 .gradle/
 
