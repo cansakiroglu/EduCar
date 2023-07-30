@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour {
 	// CAMERA CONTROLLER OF THE CAR
-	// TODO: Update the camera controlls for the car driving in this file, not optimal for serious driving.
 
 	public Transform carTransform;
 	//[Range(1, 10)]
