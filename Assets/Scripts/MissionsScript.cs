@@ -13,6 +13,8 @@ public class MissionsScript : MonoBehaviour
     TMP_Text missionsListText;
     [SerializeField]
     TMP_Text currentMissionText;
+    [SerializeField]
+    Transform ParkingCube1;
 
     private List<string> missions;
 
@@ -39,7 +41,7 @@ public class MissionsScript : MonoBehaviour
 
         // MISSION x
         // Perform L park
-        // TODO
+        missions.Add("- Perform L park");
 
         // MISSION x+1
         // Perform parallel park
@@ -77,7 +79,7 @@ public class MissionsScript : MonoBehaviour
             currentMissionText.text = ">>> ALL DONE <<<";
 
 
-        // MISSION: "Get in the car"
+        // MISSION: Get in the car
         if (player.GetComponent<PlayerOrCarChooser>().inCar)
         {
             missions[0] = "+ Get in the car"; // Each completed mission is checked as "+ <missiontext>"
@@ -87,5 +89,22 @@ public class MissionsScript : MonoBehaviour
         {
             missions[0] = "- Get in the car"; // So, if player steps out of the car, the mission becomes unchecked again, so that it can become the current mission next frame
         }
+
+        ///////
+        // ...
+        ///////
+
+        // MISSION: Perform L park
+        if (ParkingCube1.GetComponent<ParkingTrigger>().parkingCompleted)
+        {
+            int idx = missions.IndexOf("- Perform L park");
+            if (idx != -1)
+            {
+                missions[idx] = "+ Perform L";
+            }
+        }
+
+
+
     }
 }
