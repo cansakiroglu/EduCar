@@ -13,6 +13,14 @@ public class MissionsScript : MonoBehaviour
     TMP_Text missionsListText;
     [SerializeField]
     TMP_Text currentMissionText;
+
+    bool barrier1=false;
+    bool barrier2=false;
+    bool barrier3=false;
+
+     bool barrier11=false;
+    bool barrier21=false;
+    bool barrier31=false;
     [SerializeField]
     Transform ParkingCube1;
     [SerializeField]
@@ -35,10 +43,11 @@ public class MissionsScript : MonoBehaviour
 
         // MISSION 2
         // TODO
-
+        missions.Add("- Obey the signs ");
 
         //MISSION
-         missions.Add("- Pass through the pontoons");
+        missions.Add("- Pass through the barriers ");
+
         // ...
 
         // MISSION x
@@ -92,6 +101,52 @@ public class MissionsScript : MonoBehaviour
             missions[0] = "- Get in the car"; // So, if player steps out of the car, the mission becomes unchecked again, so that it can become the current mission next frame
         }
 
+        if (car.position.x>250)
+        {
+            missions[1] = "+ Obey the signs"; // Each completed mission is checked as "+ <missiontext>"
+            // '+' instead of the '-' means DONE
+        }
+        else
+        {
+            missions[1] = "- Obey the signs"; // So, if player steps out of the car, the mission becomes unchecked again, so that it can become the current mission next frame
+        }
+        //PAss THROUGH LEFT OF BARRİERS
+        if (car.position.x==-16.46317&&car.position.z<3.1)
+        {
+            barrier1=true;
+        }
+        if (car.position.x==-7.43&&car.position.z>2&&barrier1)
+        {
+            barrier2=true;
+        }
+        if (car.position.x==0.74&&car.position.z<1&&barrier2)
+        {
+            barrier3=true;
+        }
+    //PAss THROUGH RIGHT OF BARRİERS
+         if (car.position.x==-16.46317&&car.position.z>3.1)
+        {
+            barrier1=true;
+        }
+        if (car.position.x==-7.43&&car.position.z<2&&barrier1)
+        {
+            barrier2=true;
+        }
+        if (car.position.x==0.74&&car.position.z>1&&barrier2)
+        {
+            barrier3=true;
+        }
+        if ((barrier1&&barrier2&&barrier3)||(barrier11&&barrier21&&barrier31))
+        {
+            missions[2] = "+ Pass through the barriers "; // Each completed mission is checked as "+ <missiontext>"
+            // '+' instead of the '-' means DONE
+        }
+        else
+        {
+            missions[2] = "- Pass through the barriers "; // So, if player steps out of the car, the mission becomes unchecked again, so that it can become the current mission next frame
+        }   
+
+
         ///////
         // ...
         ///////
@@ -115,7 +170,6 @@ public class MissionsScript : MonoBehaviour
                 missions[idx] = "+ Perform parallel park";
             }
         }
-
 
     }
 }
