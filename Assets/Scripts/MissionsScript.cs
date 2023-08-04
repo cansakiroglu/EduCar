@@ -32,6 +32,9 @@ public class MissionsScript : MonoBehaviour
         // MISSION 2
         // TODO
 
+
+        //MISSION
+         missions.Add("- Pass through the pontoons ");
         // ...
 
         // MISSION x
