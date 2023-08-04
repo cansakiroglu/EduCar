@@ -15,6 +15,8 @@ public class MissionsScript : MonoBehaviour
     TMP_Text currentMissionText;
     [SerializeField]
     Transform ParkingCube1;
+    [SerializeField]
+    Transform ParkingCube2;
 
     private List<string> missions;
 
@@ -36,7 +38,7 @@ public class MissionsScript : MonoBehaviour
 
 
         //MISSION
-         missions.Add("- Pass through the pontoons ");
+         missions.Add("- Pass through the pontoons");
         // ...
 
         // MISSION x
@@ -45,7 +47,7 @@ public class MissionsScript : MonoBehaviour
 
         // MISSION x+1
         // Perform parallel park
-        // TODO
+        missions.Add("- Perform parallel park");
     }
 
     // Update is called once per frame
@@ -104,6 +106,15 @@ public class MissionsScript : MonoBehaviour
             }
         }
 
+        // MISSION: Perform parallel park
+        if (ParkingCube2.GetComponent<ParkingTrigger>().parkingCompleted)
+        {
+            int idx = missions.IndexOf("- Perform parallel park");
+            if (idx != -1)
+            {
+                missions[idx] = "+ Perform parallel park";
+            }
+        }
 
 
     }
