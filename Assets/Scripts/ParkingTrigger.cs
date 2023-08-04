@@ -25,8 +25,8 @@ public class ParkingTrigger : MonoBehaviour
     {
         if (other.tag == "CarParkingColliderHolder")
         {
-            if ( coll.bounds.Contains(other.bounds.max) && coll.bounds.Contains(other.bounds.min) ) {
-                // Car is completely inside the target parking spot, MISSION DONE
+            if ( coll.bounds.Contains(other.bounds.max) && coll.bounds.Contains(other.bounds.min) && other.transform.parent.GetComponent<Rigidbody>().velocity.magnitude <= 0.001f ) {
+                // Car is completely inside the target parking spot and not moving -> MISSION DONE
                 parkingCompleted = true;
             }
         }
