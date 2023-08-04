@@ -100,7 +100,7 @@ public class MissionsScript : MonoBehaviour
             int idx = missions.IndexOf("- Perform L park");
             if (idx != -1)
             {
-                missions[idx] = "+ Perform L";
+                missions[idx] = "+ Perform L park";
             }
         }
 
