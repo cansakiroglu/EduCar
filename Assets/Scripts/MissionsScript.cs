@@ -13,6 +13,7 @@ public class MissionsScript : MonoBehaviour
     TMP_Text missionsListText;
     [SerializeField]
     TMP_Text currentMissionText;
+
     bool barrier1=false;
     bool barrier2=false;
     bool barrier3=false;
@@ -20,6 +21,10 @@ public class MissionsScript : MonoBehaviour
      bool barrier11=false;
     bool barrier21=false;
     bool barrier31=false;
+    [SerializeField]
+    Transform ParkingCube1;
+    [SerializeField]
+    Transform ParkingCube2;
 
     private List<string> missions;
 
@@ -42,15 +47,16 @@ public class MissionsScript : MonoBehaviour
 
         //MISSION
         missions.Add("- Pass through the barriers ");
+
         // ...
 
         // MISSION x
         // Perform L park
-        // TODO
+        missions.Add("- Perform L park");
 
         // MISSION x+1
         // Perform parallel park
-        // TODO
+        missions.Add("- Perform parallel park");
     }
 
     // Update is called once per frame
@@ -84,7 +90,7 @@ public class MissionsScript : MonoBehaviour
             currentMissionText.text = ">>> ALL DONE <<<";
 
 
-        // MISSION: "Get in the car"
+        // MISSION: Get in the car
         if (player.GetComponent<PlayerOrCarChooser>().inCar)
         {
             missions[0] = "+ Get in the car"; // Each completed mission is checked as "+ <missiontext>"
@@ -94,6 +100,7 @@ public class MissionsScript : MonoBehaviour
         {
             missions[0] = "- Get in the car"; // So, if player steps out of the car, the mission becomes unchecked again, so that it can become the current mission next frame
         }
+
         if (car.position.x>250)
         {
             missions[1] = "+ Obey the signs"; // Each completed mission is checked as "+ <missiontext>"
@@ -138,6 +145,31 @@ public class MissionsScript : MonoBehaviour
         {
             missions[2] = "- Pass through the barriers "; // So, if player steps out of the car, the mission becomes unchecked again, so that it can become the current mission next frame
         }   
+
+
+        ///////
+        // ...
+        ///////
+
+        // MISSION: Perform L park
+        if (ParkingCube1.GetComponent<ParkingTrigger>().parkingCompleted)
+        {
+            int idx = missions.IndexOf("- Perform L park");
+            if (idx != -1)
+            {
+                missions[idx] = "+ Perform L park";
+            }
+        }
+
+        // MISSION: Perform parallel park
+        if (ParkingCube2.GetComponent<ParkingTrigger>().parkingCompleted)
+        {
+            int idx = missions.IndexOf("- Perform parallel park");
+            if (idx != -1)
+            {
+                missions[idx] = "+ Perform parallel park";
+            }
+        }
 
     }
 }
