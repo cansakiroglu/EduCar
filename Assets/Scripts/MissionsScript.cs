@@ -31,10 +31,10 @@ public class MissionsScript : MonoBehaviour
 
         // MISSION 2
         // TODO
-
+        missions.Add("- Obey the signs ");
 
         //MISSION
-         missions.Add("- Pass through the pontoons ");
+        missions.Add("- Pass through the pontoons ");
         // ...
 
         // MISSION x
@@ -87,5 +87,24 @@ public class MissionsScript : MonoBehaviour
         {
             missions[0] = "- Get in the car"; // So, if player steps out of the car, the mission becomes unchecked again, so that it can become the current mission next frame
         }
+        if (car.position.x>250)
+        {
+            missions[1] = "+ Obey the signs"; // Each completed mission is checked as "+ <missiontext>"
+            // '+' instead of the '-' means DONE
+        }
+        else
+        {
+            missions[1] = "- Obey the signs"; // So, if player steps out of the car, the mission becomes unchecked again, so that it can become the current mission next frame
+        }
+        if (car.position.x>250)
+        {
+            missions[2] = "+ Pass through the pontoons "; // Each completed mission is checked as "+ <missiontext>"
+            // '+' instead of the '-' means DONE
+        }
+        else
+        {
+            missions[2] = "- Pass through the pontoons "; // So, if player steps out of the car, the mission becomes unchecked again, so that it can become the current mission next frame
+        }   
+
     }
 }
