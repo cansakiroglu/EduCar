@@ -18,7 +18,7 @@ public class MissionsScript : MonoBehaviour
     bool barrier2=false;
     bool barrier3=false;
 
-     bool barrier11=false;
+    bool barrier11=false;
     bool barrier21=false;
     bool barrier31=false;
     [SerializeField]
