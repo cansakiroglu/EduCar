@@ -39,7 +39,7 @@ public class MissionsScript : MonoBehaviour
         missions.Add("- Get in the car"); // Each mission is added as a string with format "- <missiontext>"
 
         // MISSION 1
-        missions.Add("- Start the Engine");
+        missions.Add("- Start the Engine by pressing 'K'");
         // TODO
 
         // MISSION 2
@@ -109,11 +109,11 @@ public class MissionsScript : MonoBehaviour
 
         if (car.gameObject.GetComponent<PrometeoCarController>().engineStarted)
         {
-            missions[1] = "+ Start the Engine";
+            missions[1] = "+ Start the Engine by pressing 'K'";
         }
         else
         {
-            missions[1] = "- Start the Engine";
+            missions[1] = "- Start the Engine by pressing 'K'";
         }
 
         if (car.position.x > 250)
