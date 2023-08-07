@@ -159,6 +159,9 @@ public class PrometeoCarController : MonoBehaviour
     private PlayerOrCarChooser Chooser;
     private bool carActive = false;
 
+    [HideInInspector]
+    public bool engineStarted = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -309,6 +312,12 @@ public class PrometeoCarController : MonoBehaviour
                 carActive = false;
             }
         }
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            engineStarted = !engineStarted;
+            InvokeRepeating("DecelerateCar", 0f, 0.1f);
+            deceleratingCar = true;
+        }
 
 
         //CAR DATA
@@ -332,7 +341,7 @@ public class PrometeoCarController : MonoBehaviour
         In this part of the code we specify what the car needs to do if the user presses W (throttle), S (reverse),
         A (turn left), D (turn right) or Space bar (handbrake).
         */
-        if (useTouchControls && touchControlsSetup)
+        if (useTouchControls && touchControlsSetup && engineStarted)
         {
 
             if (throttlePTI.buttonPressed)
@@ -381,7 +390,7 @@ public class PrometeoCarController : MonoBehaviour
             }
 
         }
-        else if (carActive)
+        else if (carActive && engineStarted)
         {
 
             if (Input.GetKey(KeyCode.W))
