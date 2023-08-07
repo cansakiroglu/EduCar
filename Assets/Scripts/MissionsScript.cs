@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class MissionsScript : MonoBehaviour
 {
@@ -57,6 +58,11 @@ public class MissionsScript : MonoBehaviour
         // MISSION x+1
         // Perform parallel park
         missions.Add("- Perform parallel park");
+
+        // MISSION x+2 Last mission in the missions list
+        // Car Bonnet Mission
+        // User switches to CarBonnetScene from the GameScene in order to perform the mission
+        missions.Add("- Open the car's bonnet by pressing 'B' & name the parts within");
     }
 
     // Update is called once per frame
@@ -170,6 +176,14 @@ public class MissionsScript : MonoBehaviour
                 missions[idx] = "+ Perform parallel park";
             }
         }
+
+        // MISSION: Car Bonnet Mission
+        if (currentMissionText.text == ">>> Open the car's bonnet by pressing 'B' & name the parts within <<<" && Input.GetKeyDown(KeyCode.B))
+        {
+            SceneManager.LoadScene(sceneName: "CarBonnetScene");
+        }
+
+
 
     }
 }
