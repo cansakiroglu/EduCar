@@ -16,7 +16,8 @@ public class CameraFollow : MonoBehaviour {
 
 	private Transform whereShouldCameraBe1;
 	private Transform whereShouldCameraBe2;
-	private bool isThirdPerson;
+	private Transform whereShouldCameraBe3;
+	private int cameraMode;
 
 	void Start(){
 		//initialCameraPosition = gameObject.transform.position;
@@ -25,7 +26,8 @@ public class CameraFollow : MonoBehaviour {
 
 		whereShouldCameraBe1 = carTransform.GetChild(0); // Camera 1
 		whereShouldCameraBe2 = carTransform.GetChild(1); // Camera 2
-		isThirdPerson = true;
+		whereShouldCameraBe3 = carTransform.GetChild(2); // Camera 3
+		cameraMode = 1;
 	}
 
     void FixedUpdate()
@@ -39,15 +41,20 @@ public class CameraFollow : MonoBehaviour {
 		//Vector3 _targetPos = absoluteInitCameraPosition + carTransform.transform.position;
 		//transform.position = Vector3.Lerp(transform.position, _targetPos, followSpeed * Time.deltaTime);
 
-		if (isThirdPerson) // Camera 1
+		if (cameraMode == 1) // Camera 1
         {
 			transform.LookAt(carTransform);
 			transform.position = whereShouldCameraBe1.position;
 		}
-        else // Camera 2
+        else if (cameraMode == 2) // Camera 2
         {
 			transform.rotation = whereShouldCameraBe2.rotation;
 			transform.position = whereShouldCameraBe2.position;
+		}
+		else if (cameraMode == 3) // Camera 3
+        {
+			transform.rotation = whereShouldCameraBe3.rotation;
+			transform.position = whereShouldCameraBe3.position;
 		}
 	}
 
@@ -55,11 +62,15 @@ public class CameraFollow : MonoBehaviour {
 	{
 		if (Input.GetKeyDown(KeyCode.Alpha1))
 		{
-			isThirdPerson = true;
+			cameraMode = 1;
 		}
 		if (Input.GetKeyDown(KeyCode.Alpha2))
 		{
-			isThirdPerson = false;
+			cameraMode = 2;
+		}
+		if (Input.GetKeyDown(KeyCode.Alpha3))
+		{
+			cameraMode = 3;
 		}
 	}
 }
