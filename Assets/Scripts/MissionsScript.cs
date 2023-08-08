@@ -116,7 +116,7 @@ public class MissionsScript : MonoBehaviour
             missions[1] = "- Start the Engine by pressing 'K'";
         }
 
-        if (car.position.x > 250)
+        if (car.position.x > 223)
         {
             missions[2] = "+ Obey the signs"; // Each completed mission is checked as "+ <missiontext>"
             // '+' instead of the '-' means DONE
@@ -125,31 +125,39 @@ public class MissionsScript : MonoBehaviour
         {
             missions[2] = "- Obey the signs"; // So, if player steps out of the car, the mission becomes unchecked again, so that it can become the current mission next frame
         }
-        //PAss THROUGH LEFT OF BARRİERS
-        if (car.position.x == -16.46317 && car.position.z < 3.1)
+        //PASS THROUGH LEFT OF BARRİERS
+        if (car.position.x > 226.92 &&car.position.x < 239.8&& car.position.z < 2168.5)
         {
             barrier1 = true;
+             Debug.Log("barrier1");
+            
         }
-        if (car.position.x == -7.43 && car.position.z > 2 && barrier1)
+        if (car.position.x > 239.8 &&car.position.x < 251.7&& car.position.z > 2169.72 )
         {
             barrier2 = true;
+            Debug.Log("barrier2");
         }
-        if (car.position.x == 0.74 && car.position.z < 1 && barrier2)
+        
+        if (car.position.x > 251.7 &&car.position.x < 271.7&& car.position.z < 2171.09 )
         {
             barrier3 = true;
+            Debug.Log("barrier3");
         }
-        //PAss THROUGH RIGHT OF BARRİERS
-        if (car.position.x == -16.46317 && car.position.z > 3.1)
+        //PASS THROUGH RIGHT OF BARRİERS
+        if (car.position.x > 226.92 &&car.position.x < 239.8&& car.position.z > 2168.5)
         {
-            barrier1 = true;
+            barrier31 = true;
+            Debug.Log("barrier31");
         }
-        if (car.position.x == -7.43 && car.position.z < 2 && barrier1)
+        if (car.position.x > 239.8 &&car.position.x < 251.7&& car.position.z < 2169.72)
         {
-            barrier2 = true;
+            barrier21 = true;
+            Debug.Log("barrier21");
         }
-        if (car.position.x == 0.74 && car.position.z > 1 && barrier2)
+        if (car.position.x > 251.7 &&car.position.x < 271.7 && car.position.z > 2171.09 )
         {
-            barrier3 = true;
+            barrier11 = true;
+            Debug.Log("barrier11");
         }
         if ((barrier1 && barrier2 && barrier3) || (barrier11 && barrier21 && barrier31))
         {
