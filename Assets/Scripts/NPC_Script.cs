@@ -9,10 +9,15 @@ public class NPC_Script : MonoBehaviour
     private void Update()
     {
         int current = index;
+        if (index == waypoints.Length)
+        {
+            index++;
+        }
         if (index > waypoints.Length)
         {
             current = waypoints.Length * 2 - index;
-        }
+        }  
+        
 
         transform.position = Vector3.MoveTowards(transform.position, waypoints[current].position, 1.1f * Time.deltaTime);
 
