@@ -27,6 +27,7 @@ public class MissionsScript : MonoBehaviour
     Transform ParkingCube2;
 
     private List<string> missions;
+    private float time = -1;
 
     // Start is called before the first frame update
     void Start()
@@ -63,6 +64,10 @@ public class MissionsScript : MonoBehaviour
         // Car Bonnet Mission
         // User switches to CarBonnetScene from the GameScene in order to perform the mission
         missions.Add("- Open the car's bonnet by pressing 'B' & name the parts within");
+
+        // Fix the Engine
+        missions.Add("- Car's engine is broken, fix it by going to car's bonnet and press 'F'");
+
     }
 
     // Update is called once per frame
@@ -70,12 +75,28 @@ public class MissionsScript : MonoBehaviour
     {
         // Set missionsListText.text
         missionsListText.text = "";
-        for (int i = 0; i < missions.Count; i++)
+        for (int i = 0; i < missions.Count - 1; i++)
         {
             missionsListText.text += missions[i];
-            if (i != missions.Count - 1)
+            if (i != missions.Count - 2)
             {
                 missionsListText.text += "\n";
+            }
+        }
+
+        if (time != -1 && Time.time - time >= 4.5f) {
+            time = -1;
+            PlayerPrefs.SetInt("EngineBroken", 0);
+        }
+        else if (PlayerPrefs.GetInt("EngineBroken") == 1)
+        {
+            missionsListText.text += "\n- Car's engine is broken, fix it by going to car's bonnet and press 'F'";
+        }else if (PlayerPrefs.GetInt("EngineBroken") == 2)
+        {
+            missionsListText.text += "\n+ Car's engine is broken, fix it by going to car's bonnet and press 'F'";
+            if (time  == -1)
+            {
+                time = Time.time;
             }
         }
 

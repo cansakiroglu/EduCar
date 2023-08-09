@@ -64,7 +64,6 @@ public class PlayerOrCarChooser : MonoBehaviour
     public void InteractText(bool triggerEnter)
     {
         interactText.text = triggerEnter ? "Press [E] to enter to the car." : "";
-        Debug.Log(interactText.text);
     }
 
 

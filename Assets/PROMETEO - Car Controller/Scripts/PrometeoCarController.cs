@@ -155,9 +155,14 @@ public class PrometeoCarController : MonoBehaviour
     WheelFrictionCurve RRwheelFriction;
     float RRWextremumSlip;
 
+
     private bool playerInZone;
     private PlayerOrCarChooser Chooser;
     private bool carActive = false;
+    private float time = -1;
+    private GameObject brokenEngine;
+    private bool engineBroken = false;
+    private float engineBrokeTime = 40f;
 
     [HideInInspector]
     public bool engineStarted = false;
@@ -167,6 +172,8 @@ public class PrometeoCarController : MonoBehaviour
     {
         playerInZone = false;
         carActive = false;
+        brokenEngine = transform.GetChild(7).gameObject;
+        PlayerPrefs.SetInt("EngineBroken", 0);
 
         //In this part, we set the 'carRigidbody' value with the Rigidbody attached to this
         //gameObject. Also, we define the center of mass of the car with the Vector3 given
@@ -317,6 +324,27 @@ public class PrometeoCarController : MonoBehaviour
             engineStarted = !engineStarted;
             InvokeRepeating("DecelerateCar", 0f, 0.1f);
             deceleratingCar = true;
+
+            if (engineStarted && carActive)
+            {
+                time = Time.time;
+            }
+            else if (carActive)
+            {
+                time = -1;
+            }
+        }
+        if (time != -1 && Time.time - time > engineBrokeTime && carActive && !engineBroken)
+        {
+            brokenEngine.SetActive(true);
+            engineBroken = true;
+            engineStarted = false;
+            engineBrokeTime *= 2;
+
+            InvokeRepeating("DecelerateCar", 0f, 0.1f);
+            deceleratingCar = true;
+            time = -1;
+            PlayerPrefs.SetInt("EngineBroken", 1);
         }
 
 
@@ -341,7 +369,7 @@ public class PrometeoCarController : MonoBehaviour
         In this part of the code we specify what the car needs to do if the user presses W (throttle), S (reverse),
         A (turn left), D (turn right) or Space bar (handbrake).
         */
-        if (useTouchControls && touchControlsSetup && engineStarted)
+        if (useTouchControls && touchControlsSetup && engineStarted && !engineBroken)
         {
 
             if (throttlePTI.buttonPressed)
@@ -390,7 +418,7 @@ public class PrometeoCarController : MonoBehaviour
             }
 
         }
-        else if (carActive && engineStarted)
+        else if (carActive && engineStarted && !engineBroken)
         {
 
             if (Input.GetKey(KeyCode.W))
@@ -966,4 +994,10 @@ public class PrometeoCarController : MonoBehaviour
         }
     }
 
+    public void FixEngine()
+    {
+        PlayerPrefs.SetInt("EngineBroken", 2);
+        brokenEngine.SetActive(false);
+        engineBroken = false;
+    }
 }
