@@ -4132,6 +4132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de4128e727b254f2f86487d4905a7b52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bonnetController: {fileID: 11400000, guid: 4086bf512a4a6407dbbc7bd6a70055eb, type: 2}
 --- !u!1 &900470045
 GameObject:
   m_ObjectHideFlags: 0
