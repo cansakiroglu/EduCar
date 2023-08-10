@@ -158,7 +158,6 @@ public class PrometeoCarController : MonoBehaviour
 
     private bool playerInZone;
     private PlayerOrCarChooser Chooser;
-    private bool carActive = false;
     private float time = -1;
     private GameObject brokenEngine;
     private bool engineBroken = false;
@@ -166,6 +165,9 @@ public class PrometeoCarController : MonoBehaviour
 
     [HideInInspector]
     public bool engineStarted = false;
+    [HideInInspector]
+    public bool carActive = false;
+
 
     // Start is called before the first frame update
     void Start()

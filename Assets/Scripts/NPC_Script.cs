@@ -8,6 +8,11 @@ public class NPC_Script : MonoBehaviour
 
     private int index = 0;
 
+    private void Start()
+    {
+        transform.GetComponent<Rigidbody>().freezeRotation = true;
+    }
+
     private void Update()
     {
         int current = index;
@@ -18,9 +23,11 @@ public class NPC_Script : MonoBehaviour
         if (index > waypoints.Length)
         {
             current = waypoints.Length * 2 - index;
-        }  
-        
+        }
 
+        Vector3 target = waypoints[current].position;
+        target.y = transform.position.y;
+        transform.LookAt(target);
         transform.position = Vector3.MoveTowards(transform.position, waypoints[current].position, 1.1f * Time.deltaTime);
 
         if (Vector3.Distance(transform.position, waypoints[current].position) <= 1f)
