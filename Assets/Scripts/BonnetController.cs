@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 public class BonnetController : ScriptableObject
 {
     bool[] dropdownCorrect = { false, false, false, false, false, false, false };
+    public bool done = false;
 
     public void OnEnable()
     {
@@ -16,6 +17,7 @@ public class BonnetController : ScriptableObject
         {
             dropdownCorrect[i] = false;
         }
+        done = false;
     }
 
     public void dropdownValueChanged(GameObject dropdown)
@@ -70,6 +72,7 @@ public class BonnetController : ScriptableObject
         if (allCorrect)
         {
             txt.text = "DONE - Congratulations!";
+            done = true;
         }
         else
         {

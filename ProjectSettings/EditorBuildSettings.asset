@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CarBonnetScene.unity
     guid: c43fc2a6382b142c29e781a0a96d9fc8
+  - enabled: 1
+    path: Assets/Scenes/FinishScene.unity
+    guid: e18024e6bcb0943b1aac1071c9ed1fb4
   m_configObjects: {}

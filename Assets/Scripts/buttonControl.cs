@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 public class buttonControl : MonoBehaviour
 {
     public void playGame(){
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+        SceneManager.LoadScene(sceneName: "GameScene");
+        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
     }
     public void exitGame(){
         Application.Quit();
