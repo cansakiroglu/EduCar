@@ -147,35 +147,35 @@ public class MissionsScript : MonoBehaviour
             missions[2] = "- Obey the signs"; // So, if player steps out of the car, the mission becomes unchecked again, so that it can become the current mission next frame
         }
         //PASS THROUGH LEFT OF BARRİERS
-        if (car.position.x > 226.92 &&car.position.x < 239.8&& car.position.z < 2168.5)
+        if (car.position.x > 234.43 &&car.position.x < 246.67&& car.position.z < 2168.5)
         {
             barrier1 = true;
              Debug.Log("barrier1");
             
         }
-        if (car.position.x > 239.8 &&car.position.x < 251.7&& car.position.z > 2169.72 )
+        if (car.position.x > 246.67 &&car.position.x < 259.6&& car.position.z > 2169.72 )
         {
             barrier2 = true;
             Debug.Log("barrier2");
         }
         
-        if (car.position.x > 251.7 &&car.position.x < 271.7&& car.position.z < 2171.09 )
+        if (car.position.x > 259.6 &&car.position.x < 281.7&& car.position.z < 2171.09 )
         {
             barrier3 = true;
             Debug.Log("barrier3");
         }
         //PASS THROUGH RIGHT OF BARRİERS
-        if (car.position.x > 226.92 &&car.position.x < 239.8&& car.position.z > 2168.5)
+        if (car.position.x > 234.43 &&car.position.x < 246.67&& car.position.z > 2168.5)
         {
             barrier31 = true;
             Debug.Log("barrier31");
         }
-        if (car.position.x > 239.8 &&car.position.x < 251.7&& car.position.z < 2169.72)
+        if (car.position.x > 246.67 &&car.position.x < 259.6&& car.position.z < 2169.72)
         {
             barrier21 = true;
             Debug.Log("barrier21");
         }
-        if (car.position.x > 251.7 &&car.position.x < 271.7 && car.position.z > 2171.09 )
+        if (car.position.x > 259.6 &&car.position.x < 271.7 && car.position.z > 2171.09 )
         {
             barrier11 = true;
             Debug.Log("barrier11");
