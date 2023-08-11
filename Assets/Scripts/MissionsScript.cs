@@ -196,7 +196,7 @@ public class MissionsScript : MonoBehaviour
         ///////
 
         // MISSION: Perform L park
-        if (ParkingCube1.GetComponent<ParkingTrigger>().parkingCompleted)
+        if (ParkingCube1.GetComponent<ParkingTrigger>().parkingCompleted && PlayerPrefs.GetInt("ShifterMode") == 0)
         {
             int idx = missions.IndexOf("- Perform L park");
             if (idx != -1)
@@ -206,7 +206,7 @@ public class MissionsScript : MonoBehaviour
         }
 
         // MISSION: Perform parallel park
-        if (ParkingCube2.GetComponent<ParkingTrigger>().parkingCompleted)
+        if (ParkingCube2.GetComponent<ParkingTrigger>().parkingCompleted && PlayerPrefs.GetInt("ShifterMode") == 0)
         {
             int idx = missions.IndexOf("- Perform parallel park");
             if (idx != -1)

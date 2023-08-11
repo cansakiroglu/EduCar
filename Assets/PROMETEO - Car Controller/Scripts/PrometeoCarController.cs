@@ -348,6 +348,11 @@ public class PrometeoCarController : MonoBehaviour
             time = -1;
             PlayerPrefs.SetInt("EngineBroken", 1);
         }
+        if (PlayerPrefs.GetInt("ShifterMode") == 0)
+        {
+            InvokeRepeating("DecelerateCar", 0f, 0.1f);
+            deceleratingCar = true;
+        }
 
 
         //CAR DATA
@@ -420,20 +425,35 @@ public class PrometeoCarController : MonoBehaviour
             }
 
         }
-        else if (carActive && engineStarted && !engineBroken)
+        else if (carActive && engineStarted && !engineBroken && PlayerPrefs.GetInt("ShifterMode") != 0)
         {
-
-            if (Input.GetKey(KeyCode.W))
+            if (PlayerPrefs.GetInt("ShifterMode") == 1)
             {
-                CancelInvoke("DecelerateCar");
-                deceleratingCar = false;
-                GoForward();
+                if (Input.GetKey(KeyCode.W))
+                {
+                    CancelInvoke("DecelerateCar");
+                    deceleratingCar = false;
+                    GoReverse();
+                }
+                if (Input.GetKey(KeyCode.S))
+                {
+                    InvokeRepeating("DecelerateCar", 0f, 0.1f);
+                    deceleratingCar = true;
+                }
             }
-            if (Input.GetKey(KeyCode.S))
+            else if (PlayerPrefs.GetInt("ShifterMode") == 3)
             {
-                CancelInvoke("DecelerateCar");
-                deceleratingCar = false;
-                GoReverse();
+                if (Input.GetKey(KeyCode.W))
+                {
+                    CancelInvoke("DecelerateCar");
+                    deceleratingCar = false;
+                    GoForward();
+                }
+                if (Input.GetKey(KeyCode.S))
+                {
+                    InvokeRepeating("DecelerateCar", 0f, 0.1f);
+                    deceleratingCar = true;
+                }
             }
 
             if (Input.GetKey(KeyCode.A))
